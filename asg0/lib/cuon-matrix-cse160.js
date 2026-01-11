@@ -44,12 +44,14 @@ class Vector3 {
       * @return this
       */
     add(other) {
-      // In-place vector addition
+      // Insert your code here.
+      // This function should change this vector (this.elements) and not create a new vector.
       const d = this.elements;
       const o = other.elements;
       d[0] += o[0];
       d[1] += o[1];
       d[2] += o[2];
+      // Don't delete the return statement.
       return this;
     };
 
@@ -58,12 +60,15 @@ class Vector3 {
       * @return this
       */
     sub(other) {
-      // In-place vector subtraction
+      // Insert your code here.
+      // This function should change this vector (this.elements) and not create a new vector.
       const d = this.elements;
       const o = other.elements;
       d[0] -= o[0];
       d[1] -= o[1];
       d[2] -= o[2];
+
+      // Don't delete the return statement.
       return this;
     };
 
@@ -72,16 +77,19 @@ class Vector3 {
       * @return this
       */
     div(scalar) {
-        // In-place scalar division (guard zero)
-        if (scalar === 0) {
-          return this;
-        }
-        const inv = 1 / scalar;
-        const d = this.elements;
-        d[0] *= inv;
-        d[1] *= inv;
-        d[2] *= inv;
+      // Insert your code here.
+      // This function should change this vector (this.elements) and not create a new vector.
+      if (scalar === 0) {
         return this;
+      }
+      const inv = 1 / scalar;
+      const d = this.elements;
+      d[0] *= inv;
+      d[1] *= inv;
+      d[2] *= inv;
+
+      // Don't delete the return statement.
+      return this;
     };
 
     /**
@@ -89,11 +97,14 @@ class Vector3 {
       * @return this
       */
     mul(scalar) {
-      // In-place scalar multiplication
+      // Insert your code here.
+      // This function should change this vector (this.elements) and not create a new vector.
       const d = this.elements;
       d[0] *= scalar;
       d[1] *= scalar;
       d[2] *= scalar;
+
+      // Don't delete the return statement.
       return this;
     };
 
@@ -124,8 +135,7 @@ class Vector3 {
           a[1] * b[2] - a[2] * b[1],
           a[2] * b[0] - a[0] * b[2],
           a[0] * b[1] - a[1] * b[0]
-        ]);
-        // Modify this line to calculate cross product between other1 and other2.
+        ]); // Modify this line to calculate cross product between other1 and other2.
 
         // Don't delete the return statement.
         return v3;
@@ -136,9 +146,11 @@ class Vector3 {
       * @return scalar
       */
     magnitude() {
-      let m = 0; // Modify this line to calculate this vector's magnitude.
+      // Insert your code here.
       const e = this.elements;
-      m = Math.sqrt(e[0] * e[0] + e[1] * e[1] + e[2] * e[2]);
+      let m = Math.sqrt(e[0] * e[0] + e[1] * e[1] + e[2] * e[2]); // Modify this line to calculate this vector's magnitude.
+
+      // Don't delete the return statement.
       return m;
     };
 
@@ -147,16 +159,20 @@ class Vector3 {
       * @return this
       */
     normalize() {
-        const m = this.magnitude();
-        if (m === 0) {
-          return this;
-        }
-        const inv = 1 / m;
-        const e = this.elements;
-        e[0] *= inv;
-        e[1] *= inv;
-        e[2] *= inv;
+      // Insert your code here
+      // This function should change this vector (this.elements) and not create a new vector.
+      const m = this.magnitude();
+      if (m === 0) {
         return this;
+      }
+      const inv = 1 / m;
+      const e = this.elements;
+      e[0] *= inv;
+      e[1] *= inv;
+      e[2] *= inv;
+
+      // Don't delete the return statement.
+      return this;
     };
 }
 

@@ -1,4 +1,4 @@
-// HelloCanvas.js (c) 2012 matsuda
+
 function main() {
   // Retrieve <canvas> element
   var canvas = document.getElementById('webgl');
@@ -28,23 +28,23 @@ function drawVector(v, color) {
   
   // Set line properties
   ctx.strokeStyle = color;
-  ctx.lineWidth = 2;
+  // ctx.lineWidth = 2;
   
-  // Get canvas center
+  // Canvas center
   var centerX = canvas.width / 2;
   var centerY = canvas.height / 2;
   
   // Scale factor
   var scale = 20;
   
-  // Draw line from origin to vector endpoint
+  // Draw line
   ctx.beginPath();
   ctx.moveTo(centerX, centerY);
   ctx.lineTo(centerX + v.elements[0] * scale, centerY - v.elements[1] * scale);
   ctx.stroke();
 }
 
-// Compute the angle between two vectors in radians; returns null if either has zero length
+// Compute the angle between two vectors in radians;
 function angleBetween(v1, v2) {
   var mag1 = v1.magnitude();
   var mag2 = v2.magnitude();
@@ -52,12 +52,11 @@ function angleBetween(v1, v2) {
     return null;
   }
   var cosTheta = Vector3.dot(v1, v2) / (mag1 * mag2);
-  // Clamp for numerical stability
   cosTheta = Math.min(1, Math.max(-1, cosTheta));
   return Math.acos(cosTheta);
 }
 
-// Compute the area of the triangle formed by v1 and v2 using cross product
+// area of triangle
 function areaTriangle(v1, v2) {
   var cross = Vector3.cross(v1, v2);
   return 0.5 * cross.magnitude();
@@ -67,30 +66,30 @@ function handleDrawEvent() {
   var canvas = document.getElementById('webgl');
   var ctx = canvas.getContext('2d');
 
-  // Clear and redraw black background
+  // Clear canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = 'rgba(0, 0, 0, 1.0)';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // Read input values
+  // Read v1
   var xInput = document.getElementById('x');
   var yInput = document.getElementById('y');
   var x = parseFloat(xInput.value);
   var y = parseFloat(yInput.value);
 
-  // Draw v1 if valid
+  // Draw v1
   if (!isNaN(x) && !isNaN(y)) {
     var v1 = new Vector3([x, y, 0]);
     drawVector(v1, 'red');
   }
 
-  // Read v2 input values
+  // Read v2
   var x2Input = document.getElementById('x2');
   var y2Input = document.getElementById('y2');
   var x2 = parseFloat(x2Input ? x2Input.value : '');
   var y2 = parseFloat(y2Input ? y2Input.value : '');
 
-  // Draw v2 if valid
+  // Draw v2
   if (!isNaN(x2) && !isNaN(y2)) {
     var v2 = new Vector3([x2, y2, 0]);
     drawVector(v2, 'blue');
@@ -101,7 +100,7 @@ function handleDrawOperationEvent() {
   var canvas = document.getElementById('webgl');
   var ctx = canvas.getContext('2d');
 
-  // Clear and redraw black background
+  // Clear canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = 'rgba(0, 0, 0, 1.0)';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
