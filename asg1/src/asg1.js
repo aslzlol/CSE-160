@@ -55,11 +55,27 @@ function connectVariablesToGLSL(){
   }
 }
 
+let g_selectedColor=[1.0,1.0,1.0,1.0];
+
+function addActionsForHtmlUI(){
+  // Button Events (Shape Type)
+  document.getElementById('green').onclick = function() {g_selectedColor = [0.0,1.0,0.0,1.0]; };
+  document.getElementById('red').onclick = function() {g_selectedColor = [1.0,0.0,0.0,1.0]; };
+
+  // Slider Events
+  document.getElementById('redSlider').addEventListener('mouseup', function() {g_selectedColor[0] = parseFloat(this.value); });
+  document.getElementById('greenSlider').addEventListener('mouseup', function() {g_selectedColor[1] = parseFloat(this.value); });
+  document.getElementById('blueSlider').addEventListener('mouseup', function() {g_selectedColor[2] = parseFloat(this.value); });
+}
+
 function main() {
   // Set up canvas and get gl variables
   setupWebGL();
   // Set up GLSL shader programs and connect GLSL variables
   connectVariablesToGLSL();
+
+  // Set up actions for the HTML UI elements
+  addActionsForHtmlUI();
 
   // Register function (event handler) to be called on a mouse press
   canvas.onmousedown = function(ev){ click(ev, gl, canvas, a_Position, u_FragColor) };
@@ -82,13 +98,18 @@ function click(ev) {
   g_points.push([x, y]);
 
   // Store the coordinates to g_points array
-  if (x >= 0.0 && y >= 0.0) {      // First quadrant
-    g_colors.push([1.0, 0.0, 0.0, 1.0]);  // Red
-  } else if (x < 0.0 && y < 0.0) { // Third quadrant
-    g_colors.push([0.0, 1.0, 0.0, 1.0]);  // Green
-  } else {                         // Others
-    g_colors.push([1.0, 1.0, 1.0, 1.0]);  // White
-  }
+  g_colors.push(g_selectedColor);
+
+  g_colors.push(g_selectedColor.slice());
+  //g_colors.push([g_selectedColor[0],g_selectedColor[1],g_selectedColor[2],g_selectedColor[3]]);
+
+//  if (x >= 0.0 && y >= 0.0) {      // First quadrant
+//    g_colors.push([1.0, 0.0, 0.0, 1.0]);  // Red
+//  } else if (x < 0.0 && y < 0.0) { // Third quadrant
+//    g_colors.push([0.0, 1.0, 0.0, 1.0]);  // Green
+//  } else {                         // Others
+//    g_colors.push([1.0, 1.0, 1.0, 1.0]);  // White
+//  }
 
   renderAllShapes();
 }
