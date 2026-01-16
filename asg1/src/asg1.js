@@ -2,9 +2,10 @@
 // Vertex shader program
 var VSHADER_SOURCE = `
   attribute vec4 a_Position;
+  uniform float u_PointSize;
   void main() {
     gl_Position = a_Position;
-    gl_PointSize = 10.0;
+    gl_PointSize = u_PointSize;
   }`
 
 // Fragment shader program
@@ -20,6 +21,7 @@ let canvas;
 let gl;
 let a_Position;
 let u_FragColor;
+let u_PointSize;
 
 function setupWebGL(){
   // Retrieve <canvas> element
@@ -53,19 +55,31 @@ function connectVariablesToGLSL(){
     console.log('Failed to get the storage location of u_FragColor');
     return;
   }
+
+  // Get the storage location of u_PointSize
+  u_PointSize = gl.getUniformLocation(gl.program, 'u_PointSize');
+  if (!u_PointSize) {
+    console.log('Failed to get the storage location of u_PointSize');
+    return;
+  }
 }
 
 let g_selectedColor=[1.0,1.0,1.0,1.0];
+let g_selectedSize=10.0;
 
 function addActionsForHtmlUI(){
   // Button Events (Shape Type)
-  document.getElementById('green').onclick = function() {g_selectedColor = [0.0,1.0,0.0,1.0]; };
-  document.getElementById('red').onclick = function() {g_selectedColor = [1.0,0.0,0.0,1.0]; };
+  // document.getElementById('green').onclick = function() {g_selectedColor = [0.0,1.0,0.0,1.0]; };
+  // document.getElementById('red').onclick = function() {g_selectedColor = [1.0,0.0,0.0,1.0]; };
+  //document.getElementById
 
-  // Slider Events
+  // Color Slider Events
   document.getElementById('redSlider').addEventListener('mouseup', function() {g_selectedColor[0] = parseFloat(this.value); });
   document.getElementById('greenSlider').addEventListener('mouseup', function() {g_selectedColor[1] = parseFloat(this.value); });
   document.getElementById('blueSlider').addEventListener('mouseup', function() {g_selectedColor[2] = parseFloat(this.value); });
+
+  // Size Slider Event
+  document.getElementById('sizeSlider').addEventListener('input', function() {g_selectedSize = parseFloat(this.value); });
 }
 
 function main() {
@@ -87,29 +101,32 @@ function main() {
   gl.clear(gl.COLOR_BUFFER_BIT);
 }
 
-var g_points = [];  // The array for the position of a mouse press
-var g_colors = [];  // The array to store the color of a point
+
+var g_shapesList = [];
+
+// var g_points = [];  // The array for the position of a mouse press
+// var g_colors = [];  // The array to store the color of a point
+// var g_sizes = [];   // The array to store the size of a point
 
 function click(ev) {
 
   let [x,y] = convertCoordinateEventToGL(ev);
 
-  // Store the coordinates to g_points array
-  g_points.push([x, y]);
+  // Create and store the new point
+  let point = new Point();
+  point.position = [x,y];
+  point.color = g_selectedColor.slice();
+  point.size = g_selectedSize;
+  g_shapesList.push(point);
 
   // Store the coordinates to g_points array
-  g_colors.push(g_selectedColor);
+  // g_points.push([x, y]);
 
-  g_colors.push(g_selectedColor.slice());
-  //g_colors.push([g_selectedColor[0],g_selectedColor[1],g_selectedColor[2],g_selectedColor[3]]);
+  // // Store the coordinates to g_points array
+  // //g_colors.push(g_selectedColor);
 
-//  if (x >= 0.0 && y >= 0.0) {      // First quadrant
-//    g_colors.push([1.0, 0.0, 0.0, 1.0]);  // Red
-//  } else if (x < 0.0 && y < 0.0) { // Third quadrant
-//    g_colors.push([0.0, 1.0, 0.0, 1.0]);  // Green
-//  } else {                         // Others
-//    g_colors.push([1.0, 1.0, 1.0, 1.0]);  // White
-//  }
+  // g_colors.push(g_selectedColor.slice());
+  // g_sizes.push(g_selectedSize);
 
   renderAllShapes();
 }
@@ -129,17 +146,9 @@ function renderAllShapes() {
   // Clear canvas
   gl.clear(gl.COLOR_BUFFER_BIT);
 
-  var len = g_points.length;
+  var len = g_shapesList.length;        //g_points.length;
   for (var i = 0; i < len; i++) {
-    var xy = g_points[i];
-    var rgba = g_colors[i];
-
-    // Pass the position of a point to a_Position variable
-    gl.vertexAttrib3f(a_Position, xy[0], xy[1], 0.0);
-    // Pass the color of a point to u_FragColor variable
-    gl.uniform4f(u_FragColor, rgba[0], rgba[1], rgba[2], rgba[3]);
-    // Draw
-    gl.drawArrays(gl.POINTS, 0, 1);
+    g_shapesList.render();
   }
 
 }

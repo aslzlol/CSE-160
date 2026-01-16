@@ -11,20 +11,27 @@
     </canvas>
 
     <p>
-    <button type="button" id="green">Green</button>
-    <button type="button" id="red">Red</button>
+    <!-- <button type="button" id="green">Green</button>
+    <button type="button" id="red">Red</button> -->
+    <!-- <button type="button"-->
 
     <p>
+    <label for="shapeColor">Shape Color:</label>
+    <p>
     <label for="redSlider">Red:</label>
-    <input type="range" id="redSlider" min="0" max="1" step="0.01" value="1" style="width: 200px;"><br>
+    <input type="range" id="redSlider" min="0" max="1" step="0.01" value="1" style="width: 200px;">
     <label for="greenSlider">Green:</label>
-    <input type="range" id="greenSlider" min="0" max="1" step="0.01" value="1" style="width: 200px;"><br>
+    <input type="range" id="greenSlider" min="0" max="1" step="0.01" value="1" style="width: 200px;">
     <label for="blueSlider">Blue:</label>
-    <input type="range" id="blueSlider" min="0" max="1" step="0.01" value="1" style="width: 200px;"><br>
+    <input type="range" id="blueSlider" min="0" max="1" step="0.01" value="1" style="width: 200px;">
+    <p>
+    <label for="sizeSlider">Size:</label>
+    <input type="range" id="sizeSlider" min="5" max="50" step="1" value="10" style="width: 200px;"><br>
 
     <script src="../lib/webgl-utils.js"></script>
     <script src="../lib/webgl-debug.js"></script>
     <script src="../lib/cuon-utils.js"></script>
+    <script src="Point.js"></script>
     <script src="asg1.js"></script>
   </body>
 </html>
