@@ -9,9 +9,16 @@ class Point{
 
   // Render the shape
   render() {
-    var xy = g_shapesList[i].position;  //g_points[i];
-    var rgba = g_shapesList[i].color;   //g_colors[i];
-    var size = g_shapesList[i].size;    //g_sizes[i];
+    var xy = this.position;
+    var rgba = this.color;
+    var size = this.size;
+    // var xy = g_shapesList[i].position;  //g_points[i];
+    // var rgba = g_shapesList[i].color;   //g_colors[i];
+    // var size = g_shapesList[i].size;    //g_sizes[i];
+
+    // Quit using the buffer to send the attribute
+    gl.disableVertexAttribArray(a_Position);
+    //gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([ xy[0], xy[1]]), gl.DYNAMIC_DRAW);
 
     // Pass the position of a point to a_Position variable
     gl.vertexAttrib3f(a_Position, xy[0], xy[1], 0.0);
