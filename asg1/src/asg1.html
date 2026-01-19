@@ -13,15 +13,16 @@
     <p>
     <!-- <button type="button" id="green">Green</button>
     <button type="button" id="red">Red</button> -->
-    <button type="button" id="clearButton">Clear</button>
+    <button type="button" id="clearButton">Clear Canvas</button>
     <p>
+    <label for="drawingMode">Drawing Mode:</label><br>
     <button type="button" id="pointButton">Point</button>
     <button type="button" id="triButton">Triangle</button>
     <button type="button" id="circleButton">Circle</button>
+    <button type="button" id="drawRefButton">Draw Reference</button>
 
     <p>
-    <label for="shapeColor">Shape Color:</label>
-    <p>
+    <label for="shapeColor">Shape Color:</label> <br>
     <label for="redSlider">Red:</label>
     <input type="range" id="redSlider" min="0" max="1" step="0.01" value="1" style="width: 200px;">
     <label for="greenSlider">Green:</label>
@@ -31,8 +32,14 @@
     <p>
     <label for="sizeSlider">Shape Size:</label>
     <input type="range" id="sizeSlider" min="5" max="50" step="1" value="10" style="width: 200px;">
+    <p>
     <label for="segmentSlider">(Circles) Segment Count:</label>
-    <input type="range" id="segmentSlider" min="10" max="100" step="1" value="10" style="width: 200px;">
+    <input type="range" id="segmentSlider" min="6" max="100" step="1" value="10" style="width: 200px;">
+
+    <p>
+      <strong>Reference:</strong><br>
+      <img id="referenceImage" src="../asg1 ref.jpg" alt="Tree reference" style="max-width: 150px; border: 1px solid #ccc;">
+    </p>
 
     <script src="../lib/webgl-utils.js"></script>
     <script src="../lib/webgl-debug.js"></script>

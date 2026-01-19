@@ -29,6 +29,30 @@ class Triangle{
   }
 }
 
+// StaticTriangle: draws an arbitrary triangle defined by 3 vertices
+// verts: [x1,y1,x2,y2,x3,y3] in NDC; color: [r,g,b,a]
+class StaticTriangle {
+  constructor(verts, color){
+    this.type = 'static-triangle';
+    this.color = color || [1.0,1.0,1.0,1.0];
+    this.vertexBuffer = gl.createBuffer();
+    this.vertexCount = 3;
+    gl.bindBuffer(gl.ARRAY_BUFFER, this.vertexBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verts), gl.STATIC_DRAW);
+  }
+
+  render(){
+    // Set color
+    gl.uniform4f(u_FragColor, this.color[0], this.color[1], this.color[2], this.color[3]);
+    // Bind and configure buffer
+    gl.bindBuffer(gl.ARRAY_BUFFER, this.vertexBuffer);
+    gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(a_Position);
+    // Draw
+    gl.drawArrays(gl.TRIANGLES, 0, this.vertexCount);
+  }
+}
+
 function drawTriangle(vertices) {
     var n = 3;  // Number of vertices
 

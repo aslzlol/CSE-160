@@ -84,6 +84,7 @@ function addActionsForHtmlUI(){
   document.getElementById('pointButton').onclick = function() {g_selectedType=POINT};
   document.getElementById('triButton').onclick = function() {g_selectedType=TRIANGLE};
   document.getElementById('circleButton').onclick = function() {g_selectedType=CIRCLE};
+  document.getElementById('drawRefButton').onclick = drawReference;
 
   // Color Slider Events
   document.getElementById('redSlider').addEventListener('mouseup', function() {g_selectedColor[0] = parseFloat(this.value); });
@@ -173,4 +174,116 @@ function renderAllShapes() {
     g_shapesList[i].render();
   }
 
+}
+
+// Drawing
+function drawReference(){
+  const tris = [
+    // Grass 
+    {verts: [
+        -1.0, -1.0,
+         1.0, -1.0,
+        -1.0, -0.6,
+      ],
+      color: [0.0, 0.6, 0.0, 1.0],
+    },
+    {
+      verts: [
+        -1.0, -0.6,
+         1.0, -1.0,
+         1.0, -0.6,
+      ],
+      color: [0.0, 0.6, 0.0, 1.0],
+    },
+    // Trunk (two triangles)
+    {
+      verts: [
+        -0.05, -0.6,
+         0.05, -0.6,
+        -0.05, -0.45,
+      ],
+      color: [0.55, 0.27, 0.07, 1.0],
+    },
+    {
+      verts: [
+        -0.05, -0.45,
+         0.05, -0.6,
+         0.05, -0.45,
+      ],
+      color: [0.55, 0.27, 0.07, 1.0],
+    },
+
+    // Bottom foliage
+    {
+      verts: [
+        -0.45, -0.45,
+         0.45, -0.45,
+         0.00,  0.05,
+      ],
+      color: [0.0, 0.55, 0.0, 1.0],
+    },
+
+    // Middle foliage
+    {
+      verts: [
+        -0.35, -0.20,
+         0.35, -0.20,
+         0.00,  0.25,
+      ],
+      color: [0.0, 0.60, 0.0, 1.0],
+    },
+
+    // Top foliage
+    {
+      verts: [
+        -0.25,  0.00,
+         0.25,  0.00,
+         0.00,  0.40,
+      ],
+      color: [0.0, 0.65, 0.0, 1.0],
+    },
+
+    // Diamond ornaments (two triangles per diamond)
+    // Bottom layer ornaments (slightly below the tips)
+    { verts: [-0.45, -0.41, -0.41, -0.45, -0.49, -0.45], color: [0.35, 0.70, 1.0, 1.0] },
+    { verts: [-0.45, -0.49, -0.41, -0.45, -0.49, -0.45], color: [0.35, 0.70, 1.0, 1.0] },
+
+    { verts: [ 0.45, -0.41,  0.49, -0.45,  0.41, -0.45], color: [1.0, 0.35, 0.35, 1.0] },
+    { verts: [ 0.45, -0.49,  0.49, -0.45,  0.41, -0.45], color: [1.0, 0.35, 0.35, 1.0] },
+
+    // Middle layer ornaments
+    { verts: [-0.35, -0.16, -0.31, -0.20, -0.39, -0.20], color: [1.0, 0.85, 0.0, 1.0] },
+    { verts: [-0.35, -0.24, -0.31, -0.20, -0.39, -0.20], color: [1.0, 0.85, 0.0, 1.0] },
+
+    { verts: [ 0.35, -0.16,  0.39, -0.20,  0.31, -0.20], color: [0.35, 0.70, 1.0, 1.0] },
+    { verts: [ 0.35, -0.24,  0.39, -0.20,  0.31, -0.20], color: [0.35, 0.70, 1.0, 1.0] },
+
+    // Top layer ornaments
+    { verts: [-0.25,  0.04, -0.21,  0.00, -0.29,  0.00], color: [1.0, 0.35, 0.35, 1.0] },
+    { verts: [-0.25, -0.04, -0.21,  0.00, -0.29,  0.00], color: [1.0, 0.35, 0.35, 1.0] },
+
+    { verts: [ 0.25,  0.04,  0.29,  0.00,  0.21,  0.00], color: [1.0, 0.85, 0.0, 1.0] },
+    { verts: [ 0.25, -0.04,  0.29,  0.00,  0.21,  0.00], color: [1.0, 0.85, 0.0, 1.0] },
+
+    // Star (five-pointed star made of triangles)
+    { verts: [-0.04, 0.42,  0.04, 0.42,  0.00, 0.52], color: [1.0, 0.9, 0.2, 1.0] },
+    { verts: [-0.04, 0.42, -0.12, 0.40, -0.06, 0.36], color: [1.0, 0.9, 0.2, 1.0] },
+    { verts: [-0.06, 0.36, -0.10, 0.28,  0.00, 0.32], color: [1.0, 0.9, 0.2, 1.0] },
+    { verts: [ 0.00, 0.32,  0.10, 0.28,  0.06, 0.36], color: [1.0, 0.9, 0.2, 1.0] },
+    { verts: [ 0.06, 0.36,  0.12, 0.40,  0.04, 0.42], color: [1.0, 0.9, 0.2, 1.0] },
+    { verts: [ 0.00, 0.38, -0.04, 0.42, -0.06, 0.36], color: [1.0, 0.9, 0.2, 1.0] },
+    { verts: [ 0.00, 0.38, -0.06, 0.36,  0.00, 0.32], color: [1.0, 0.9, 0.2, 1.0] },
+    { verts: [ 0.00, 0.38,  0.00, 0.32,  0.06, 0.36], color: [1.0, 0.9, 0.2, 1.0] },
+    { verts: [ 0.00, 0.38,  0.06, 0.36,  0.04, 0.42], color: [1.0, 0.9, 0.2, 1.0] },
+    { verts: [ 0.00, 0.38,  0.04, 0.42, -0.04, 0.42], color: [1.0, 0.9, 0.2, 1.0] },
+    { verts: [-0.04, 0.42,  0.04, 0.42,  0.00, 0.52], color: [1.0, 0.9, 0.2, 1.0] },
+    { verts: [-0.04, 0.42,  0.04, 0.42,  0.00, 0.34], color: [1.0, 0.9, 0.2, 1.0] },
+  ];
+
+  for (const t of tris){
+    const tri = new StaticTriangle(t.verts, t.color);
+    g_shapesList.push(tri);
+  }
+
+  renderAllShapes();
 }

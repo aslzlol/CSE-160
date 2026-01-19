@@ -1,0 +1,1 @@
+Used ai to help with the alignment of the drawing. 
