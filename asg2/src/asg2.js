@@ -319,7 +319,7 @@ function renderScene() {
   bodyMatrix.scale(0.4, 0.2, 0.25);
   drawCube(bodyMatrix, [0.82, 0.62, 0.42, 1.0]);
   
-  // Head (attached to body front)
+  // Head
   var headMatrix = new Matrix4();
   headMatrix.translate(0.25, 0.05 + g_bodyBob, 0.05 + g_bodySway);
   headMatrix.rotate(g_headAngle, 0, 1, 0);
@@ -339,7 +339,7 @@ function renderScene() {
   rightEyeMatrix.scale(0.04, 0.04, 0.03);
   drawCube(rightEyeMatrix, [0.2, 0.2, 0.2, 1.0]);
   
-  // Mane - single block
+  // Mane
   var maneMatrix = new Matrix4(headCoord);
   maneMatrix.translate(-0.12, -0.03, -0.08);
   maneMatrix.scale(0.2, 0.275, 0.30);
