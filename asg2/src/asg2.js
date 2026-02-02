@@ -369,7 +369,7 @@ function renderScene() {
   rightEarMatrix.scale(0.06, 0.08, 0.04);
   drawCube(rightEarMatrix, [0.80, 0.60, 0.40, 1.0]);
   
-  // Tail base
+  // Tail base (cylinder)
   var tailMatrix = new Matrix4();
   tailMatrix.translate(-0.05, 0.0 + g_bodyBob, 0.12 + g_bodySway);
   tailMatrix.rotate(g_tailAngle, 0, 0, 1);
@@ -378,7 +378,7 @@ function renderScene() {
   tailMatrix.scale(0.15, 0.05, 0.05);
   drawCylinder(tailMatrix, [0.78, 0.58, 0.38, 1.0]);
   
-  // Tail mid segment
+  // Tail mid segment (cylinder)
   var tailMid = new Matrix4(tailCoord);
   tailMid.translate(-0.27, 0, 0);
   tailMid.rotate(g_tailMidAngle, 0, 0, 1);
