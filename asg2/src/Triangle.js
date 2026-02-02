@@ -5,6 +5,9 @@ class Triangle{
     this.position = [0.0,0.0,0.0];
     this.color = [1.0,1.0,1.0,1.0];
     this.size = 5.0;
+
+    this.buffer = null;
+    this.vertices = null;
   }
 
   // Render the shape
@@ -80,6 +83,13 @@ function drawTriangle(vertices) {
 
 function drawTriangle3D(vertices) {
     var n = vertices.length / 3;
+    // if (this.buffer === null) {
+    //   this.buffer = gl.createBuffer();
+    //   if (!this.buffer) {
+    //     console.log('Failed to create the buffer object');
+    //     return;
+    //   }
+    // }
     var vertexBuffer = gl.createBuffer();
     if (!vertexBuffer) {
         console.log('Failed to create the buffer object');
