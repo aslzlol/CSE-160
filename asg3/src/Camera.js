@@ -171,6 +171,9 @@ class Camera {
 
     let mapX = Math.round(x);
     let mapZ = Math.round(z);
+    
+    mapX +=5;
+    mapZ +=3;
 
     if (mapX < 1 || mapX > 30 || mapZ < 1 || mapZ > 30) {
         return;
