@@ -81,7 +81,7 @@ let g_bodySway = 0;
 let g_tailMidAngle = 0;
 let g_tailTipAngle = 0;
 
-let g_animation = false;
+let g_animation = true;
 let g_startTime = performance.now() / 1000.0;
 let g_seconds = 0;
 
