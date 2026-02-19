@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Assignment 3</title>
+  </head>
+
+  <body onload="main()">
+    <canvas id="webgl" width="800" height="800">
+    Please use a browser that supports "canvas"
+    </canvas>
+
+    <p>
+    <label id="numdot"></label>
+
+    <p>
+    <h3>Animation Controls</h3>
+    <button type="button" id="animationOn">Animation On</button>
+    <button type="button" id="animationOff">Animation Off</button>
+    
+    <h3>Global Rotation</h3>
+    <label for="angleSlide">Angle:</label>
+    <input type="range" id="angleSlide" min="-180" max="180" step="1" value="0" style="width: 300px;">
+    <span id="angleValue">0</span>°
+    
+    <h3>Head Control</h3>
+    <label for="headSlide">Head Angle:</label>
+    <input type="range" id="headSlide" min="-45" max="45" step="1" value="0" style="width: 300px;">
+    <span id="headValue">0</span>°
+    
+    <h3>Tail Control</h3>
+    <label for="tailSlide">Tail Angle:</label>
+    <input type="range" id="tailSlide" min="-60" max="60" step="1" value="0" style="width: 300px;">
+    <span id="tailValue">0</span>°
+    
+    <h3>Leg Controls</h3>
+    <label for="frontLeftLegSlide">Front Left Leg:</label>
+    <input type="range" id="frontLeftLegSlide" min="-90" max="90" step="1" value="0" style="width: 300px;">
+    <span id="frontLeftLegValue">0</span>°
+    <br>
+    
+    <label for="frontRightLegSlide">Front Right Leg:</label>
+    <input type="range" id="frontRightLegSlide" min="-90" max="90" step="1" value="0" style="width: 300px;">
+    <span id="frontRightLegValue">0</span>°
+    <br>
+    
+    <label for="backLeftLegSlide">Back Left Leg:</label>
+    <input type="range" id="backLeftLegSlide" min="-90" max="90" step="1" value="0" style="width: 300px;">
+    <span id="backLeftLegValue">0</span>°
+    <br>
+    
+    <label for="backRightLegSlide">Back Right Leg:</label>
+    <input type="range" id="backRightLegSlide" min="-90" max="90" step="1" value="0" style="width: 300px;">
+    <span id="backRightLegValue">0</span>°
+    
+    <h3>Multi-Level Joint Controls</h3>
+    <label for="frontLeftLowerLegSlide">Front Left Lower Leg:</label>
+    <input type="range" id="frontLeftLowerLegSlide" min="-90" max="90" step="1" value="0" style="width: 300px;">
+    <span id="frontLeftLowerLegValue">0</span>°
+    <br>
+    
+    <label for="frontLeftFootSlide">Front Left Foot:</label>
+    <input type="range" id="frontLeftFootSlide" min="-45" max="45" step="1" value="0" style="width: 300px;">
+    <span id="frontLeftFootValue">0</span>°
+        
+
+    <script src="../lib/webgl-utils.js"></script>
+    <script src="../lib/webgl-debug.js"></script>
+    <script src="../lib/cuon-utils.js"></script>
+    <!-- <script src="../lib/cuon-matrix.js"></script> -->
+    <script src="../lib/cuon-matrix-cse160.js"></script>
+    <script src="Camera.js"></script>
+    <script src="Cube.js"></script>
+    <script src="Circle.js"></script>
+    <script src="Triangle.js"></script>
+    <script src="Point.js"></script>
+    <script src="asg3.js"></script>
+  </body>
+</html>
