@@ -1,0 +1,1 @@
+Used ai to fix my uvs for draw triangle
