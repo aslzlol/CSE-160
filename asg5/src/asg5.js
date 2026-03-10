@@ -61,6 +61,8 @@ window.addEventListener('resize', () => {
 //     scene.environment = texture;   // PBR materials (balls, water) pick this up
 // });
 
+
+// Skybox from Freepik https://www.freepik.com/free-photo/coma-berenices-star-constellation-night-sky-cluster-stars-deep-space-berenice-hair_24149865.htm#fromView=keyword&page=1&position=8&uuid=c9e7159c-ef3a-4401-b838-ccb681e774d5&query=Equirectangular+night+sky
 const loader = new THREE.TextureLoader();
 const texture = loader.load('../resources/images/nightSky.jpg', () => {
     texture.mapping = THREE.EquirectangularReflectionMapping;
